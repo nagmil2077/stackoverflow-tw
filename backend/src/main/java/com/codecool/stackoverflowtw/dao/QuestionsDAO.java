@@ -7,7 +7,7 @@ import java.util.List;
 public interface QuestionsDAO {
     void sayHi();
     // CREATE
-    void add(int id, String title, String description);
+    void add(String title, String description);
     // READ
     Question get(int id);
     // READ ALL
