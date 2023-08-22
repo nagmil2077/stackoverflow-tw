@@ -10,19 +10,7 @@ import java.util.List;
 
 public class QuestionsDaoJdbc implements QuestionsDAO {
 
-    public Connection getConnection() {
-        String dbName = "stackoverflow_db";
-        String userName = "postgres";
-        String password = "333333";
-        String url = "jdbc:postgresql://localhost:5432/" + dbName;
 
-        try {
-            return DriverManager.getConnection(url, userName, password);
-        } catch (SQLException ex) {
-            System.err.println("Could not create database connection.");
-            throw new RuntimeException(ex);
-        }
-    }
 
     @Override
     public void sayHi() {
