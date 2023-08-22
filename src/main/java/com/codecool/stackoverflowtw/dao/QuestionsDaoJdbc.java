@@ -3,7 +3,6 @@ package com.codecool.stackoverflowtw.dao;
 import com.codecool.stackoverflowtw.dao.model.Question;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,12 +50,12 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
                 System.out.println(rs.getInt("id") + "\t" +
                         rs.getString("title") + "\t" +
                         rs.getString("description") + "\t" +
-                        LocalDate.parse(rs.getString("date_created")));
+                        rs.getTimestamp("date_created"));
                 questions.add(new Question(
                         rs.getInt("id"),
                         rs.getString("title"),
                         rs.getString("description"),
-                        LocalDate.parse(rs.getString("date_created"))));
+                        rs.getTimestamp("date_created").toLocalDateTime()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

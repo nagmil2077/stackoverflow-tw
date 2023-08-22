@@ -29,7 +29,7 @@ public class QuestionService {
                     questionDAO.id(),
                     questionDAO.title(),
                     questionDAO.description(),
-                    questionDAO.localDate().atStartOfDay()));
+                    questionDAO.localDateTime()));
         }
 
         return questionDTOList;
@@ -41,7 +41,7 @@ public class QuestionService {
                 question.id(),
                 question.title(),
                 question.description(),
-                question.localDate().atStartOfDay());
+                question.localDateTime());
     }
 
     public boolean deleteQuestionById(int id) {

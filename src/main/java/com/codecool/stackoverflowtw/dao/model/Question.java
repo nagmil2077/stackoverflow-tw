@@ -1,8 +1,8 @@
 package com.codecool.stackoverflowtw.dao.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public record Question(int id, String title, String description, LocalDate localDate) {
+public record Question(int id, String title, String description, LocalDateTime localDateTime) {
 
     @Override
     public String toString() {
@@ -10,7 +10,7 @@ public record Question(int id, String title, String description, LocalDate local
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", localDate=" + localDate +
+                ", localDate=" + localDateTime +
                 '}';
     }
 }
