@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS question
 (
-    id INTEGER PRIMARY KEY,
+    id serial PRIMARY KEY,
     title TEXT,
     description TEXT,
     date_created TIMESTAMP
