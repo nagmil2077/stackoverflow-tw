@@ -26,7 +26,7 @@ const QuestionCreator = () => {
         createQuestion(question)
             .then(() => {
                 setLoading(false);
-                // navigate("/");
+                navigate("/");
             })
     };
 

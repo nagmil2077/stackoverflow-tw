@@ -4,6 +4,7 @@ import com.codecool.stackoverflowtw.dao.model.Question;
 import com.codecool.stackoverflowtw.service.SqlConnector;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +22,20 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public void add(String title, String description) {
-        String sql = "INSERT INTO question(title, description) VALUES (?,?)";
+    public void add(int id, String title, String description) {
+        String sql = "INSERT INTO question(title, description, date_created) VALUES (?, ?, ?)";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setString(1, title);
             pstmt.setString(2, description);
+
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+            System.out.println("Generated Timestamp: " + timestamp);
+
+            pstmt.setTimestamp(3, timestamp);
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

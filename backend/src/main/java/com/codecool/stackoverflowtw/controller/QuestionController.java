@@ -36,6 +36,7 @@ public class QuestionController {
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
         System.out.println("TITLE: " + question.title());
+        System.out.println("DESCRIPTION: " + question.description());
         return questionService.addNewQuestion(question);
     }
 

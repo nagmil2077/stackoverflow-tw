@@ -54,7 +54,7 @@ public class QuestionService {
 
     public int addNewQuestion(NewQuestionDTO question) {
         int createdId = 0;
-        questionsDAO.add(question.title(), question.description());
+        questionsDAO.add(createdId, question.title(), question.description());
         return createdId;
     }
 }
