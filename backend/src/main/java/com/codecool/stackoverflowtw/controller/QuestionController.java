@@ -28,8 +28,14 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
+//    @PatchMapping("/update/{id}")
+//    public QuestionDTO updateQuestionById(@PathVariable int id, @RequestBody NewQuestionDTO question) {
+//        return questionService.updateQuestion(id, question.title(), question.description());
+//    }
+
     @PostMapping("/")
     public int addNewQuestion(@RequestBody NewQuestionDTO question) {
+        System.out.println("TITLE: " + question.title());
         return questionService.addNewQuestion(question);
     }
 

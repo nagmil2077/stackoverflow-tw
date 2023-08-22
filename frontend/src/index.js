@@ -8,6 +8,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./Components/Pages/Layout";
 import MainPage from "./Components/Pages/MainPage";
 import QuestionCreator from "./Components/Pages/QuestionCreator";
+import QuestionUpdater from "./Components/Pages/QuestionUpdater";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/create",
                 element: <QuestionCreator />,
+            },
+            {
+                path: "/update/:id",
+                element: <QuestionUpdater />,
             }
         ],
     },

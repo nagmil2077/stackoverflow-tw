@@ -4,29 +4,34 @@ const QuestionForm = ({ onSave, disabled, onCancel }) => {
         const formData = new FormData(e.target);
         const entries = [...formData.entries()];
 
-        const company = entries.reduce((acc, entry) => {
+        const question = entries.reduce((acc, entry) => {
             const [k, v] = entry;
             acc[k] = v;
             return acc;
         }, {});
 
-        return onSave(company);
+        return onSave(question);
     };
 
     return (
-        <form className="CompanyForm" onSubmit={onSubmit}>
+        <form className="QuestionForm" onSubmit={onSubmit}>
 
             <div className="control">
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="title">Title:</label>
                 <input
-                    name="name"
-                    id="name"
+                    name="title"
+                    id="title"
+                />
+                <label htmlFor="description">Description:</label>
+                <input
+                    name="description"
+                    id="description"
                 />
             </div>
 
             <div className="buttons">
                 <button type="submit" disabled={disabled}>
-                    Create company
+                    Create question
                 </button>
 
                 <button type="button" onClick={onCancel}>
