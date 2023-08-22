@@ -7,7 +7,7 @@ import java.util.List;
 public interface QuestionsDAO {
     void sayHi();
     // CREATE
-    void add(String title, String description);
+    void add(int id, String title, String description);
     // READ
     Question get(int id);
     // READ ALL
@@ -15,7 +15,7 @@ public interface QuestionsDAO {
     // UPDATE
     void update(int id, String title, String description);
     // DELETE
-    void delete(int id);
+    boolean delete(int id);
     // DELETE ALL
     void deleteAll();
 }

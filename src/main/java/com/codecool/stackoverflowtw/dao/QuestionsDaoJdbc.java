@@ -70,8 +70,9 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
 
+        return false;
     }
 
     @Override
