@@ -4,21 +4,20 @@ import Loading from "../Loading";
 import QuestionForm from "../QuestionForm";
 
 const updateQuestion = (question) => {
-    return fetch(`/questions/${question.id}`, {
+    return fetch(`/questions/update/${question.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(question),
-    }).then((res) => res.json());
+    }).then((res) => {
+        console.log(res.status)
+        return res.json()
+    });
 };
 
 const fetchQuestion = (id) => {
     return fetch(`/questions/${id}`).then((res) => res.json());
-};
-
-const fetchCompanies = () => {
-    return fetch(`/api/companies/`).then((res) => res.json());
 };
 
 const QuestionUpdater = () => {

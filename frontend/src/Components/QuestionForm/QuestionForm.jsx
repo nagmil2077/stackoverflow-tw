@@ -1,4 +1,4 @@
-const QuestionForm = ({ onSave, disabled, onCancel }) => {
+const QuestionForm = ({ question, onSave, disabled, onCancel }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -15,6 +15,9 @@ const QuestionForm = ({ onSave, disabled, onCancel }) => {
 
     return (
         <form className="QuestionForm" onSubmit={onSubmit}>
+            {question && (
+                <input type="hidden" name="id" defaultValue={question.id} />
+            )}
 
             <div className="control">
                 <label htmlFor="title">Title:</label>
@@ -31,7 +34,7 @@ const QuestionForm = ({ onSave, disabled, onCancel }) => {
 
             <div className="buttons">
                 <button type="submit" disabled={disabled}>
-                    Create question
+                    {question ? "Update Question" : "Create Question"}
                 </button>
 
                 <button type="button" onClick={onCancel}>

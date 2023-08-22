@@ -15,7 +15,6 @@ const QuestionTable = ({questions, onDelete}) => (
             </thead>
             <tbody>
             {questions.map((question) => {
-                console.log("HELLO: " + Object.keys(question))
                     return <tr key={question.id}>
                         <td>{question.id}</td>
                         <td>{question.title}</td>
