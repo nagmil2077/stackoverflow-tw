@@ -4,15 +4,16 @@ import com.codecool.stackoverflowtw.dao.model.Question;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsDaoJdbc implements QuestionsDAO {
 
     public Connection getConnection() {
-        String dbName = "stackoverflow";
+        String dbName = "stackoverflow_db";
         String userName = "postgres";
-        String password = "C@psl0ck";
+        String password = "333333";
         String url = "jdbc:postgresql://localhost:5432/" + dbName;
 
         try {
@@ -35,6 +36,33 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public Question get(int id) {
+        String sql = "SELECT id, title, description, date_created FROM question WHERE id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                if (rs.next()){
+
+                    Question question = new Question(
+                            rs.getInt("id"),
+                            rs.getString("title"),
+                            rs.getString("description"),
+                            rs.getTimestamp("date_created").toLocalDateTime());
+
+                    System.out.println(
+                            rs.getInt("id") + "\t" +
+                                    rs.getString("title") + "\t" +
+                                    rs.getString("description") + "\t" +
+                                    rs.getTimestamp("date_created"));
+
+                    return question;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
@@ -51,12 +79,12 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
                 System.out.println(rs.getInt("id") + "\t" +
                         rs.getString("title") + "\t" +
                         rs.getString("description") + "\t" +
-                        LocalDate.parse(rs.getString("date_created")));
+                        rs.getTimestamp("date_created"));
                 questions.add(new Question(
                         rs.getInt("id"),
                         rs.getString("title"),
                         rs.getString("description"),
-                        LocalDate.parse(rs.getString("date_created"))));
+                        rs.getTimestamp("date_created").toLocalDateTime()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -66,6 +94,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public void update(int id, String title, String description) {
+
 
     }
 

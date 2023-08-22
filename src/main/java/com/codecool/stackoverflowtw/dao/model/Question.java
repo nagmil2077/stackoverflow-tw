@@ -1,18 +1,19 @@
 package com.codecool.stackoverflowtw.dao.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Question {
     private final int id;
     private final String title;
     private final String description;
-    private final LocalDate localDate;
+    private final LocalDateTime localDateTime;
 
-    public Question(int id, String title, String description, LocalDate localDate) {
+    public Question(int id, String title, String description, LocalDateTime localDateTime) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.localDate = localDate;
+        this.localDateTime = localDateTime;
     }
 
     public int getId() {
@@ -27,8 +28,8 @@ public class Question {
         return description;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Question {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", localDate=" + localDate +
+                ", localDateTime=" + localDateTime +
                 '}';
     }
 }

@@ -31,7 +31,7 @@ public class QuestionService {
                     questionDAO.getId(),
                     questionDAO.getTitle(),
                     questionDAO.getDescription(),
-                    questionDAO.getLocalDate().atStartOfDay()));
+                    questionDAO.getLocalDateTime()));
         }
 
 //        return List.of(new QuestionDTO(1, "example title", "example desc", LocalDateTime.now()));
