@@ -22,7 +22,6 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestions() {
-        // TODO
         List<Question> questionDAOList = questionsDAO.getAll();
         List<QuestionDTO> questionDTOList = new ArrayList<>();
 
@@ -34,24 +33,25 @@ public class QuestionService {
                     questionDAO.getLocalDate().atStartOfDay()));
         }
 
-//        return List.of(new QuestionDTO(1, "example title", "example desc", LocalDateTime.now()));
         return questionDTOList;
     }
 
     public QuestionDTO getQuestionById(int id) {
-        // TODO
-        questionsDAO.sayHi();
-        return new QuestionDTO(id, "example title", "example desc", LocalDateTime.now());
+        Question question = questionsDAO.get(id);
+        return new QuestionDTO(
+                question.getId(),
+                question.getTitle(),
+                question.getDescription(),
+                question.getLocalDate().atStartOfDay());
     }
 
     public boolean deleteQuestionById(int id) {
-        // TODO
-        return false;
+        return questionsDAO.delete(id);
     }
 
     public int addNewQuestion(NewQuestionDTO question) {
-        // TODO
         int createdId = 0;
+        questionsDAO.add(question);
         return createdId;
     }
 }
