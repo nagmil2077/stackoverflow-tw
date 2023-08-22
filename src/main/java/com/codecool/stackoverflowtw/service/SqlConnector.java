@@ -13,8 +13,8 @@ public class SqlConnector {
 
     public SqlConnector() {
         this.userName = "postgres";
-        this.password = "";
-        this.dbName = "stackoverflow_db";
+        this.password = "C@psl0ck";
+        this.dbName = "stackoverflow";
         this.url = "jdbc:postgresql://localhost:5432/" + dbName;
     }
 
