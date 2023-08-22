@@ -12,9 +12,9 @@ public class SqlConnector {
     private final String dbName;
 
     public SqlConnector() {
-        this.userName = "postgres";
-        this.password = "C@psl0ck";
-        this.dbName = "stackoverflow";
+        this.userName = System.getenv("USERNAME");
+        this.password = System.getenv("PASSWORD");
+        this.dbName = System.getenv("DB_NAME");
         this.url = "jdbc:postgresql://localhost:5432/" + dbName;
     }
 
