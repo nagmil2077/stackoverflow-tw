@@ -15,7 +15,7 @@ public interface QuestionsDAO {
     // UPDATE
     void update(int id, String title, String description);
     // DELETE
-    void delete(int id);
+    boolean delete(int id);
     // DELETE ALL
-    void deleteAll();
+    boolean deleteAll();
 }

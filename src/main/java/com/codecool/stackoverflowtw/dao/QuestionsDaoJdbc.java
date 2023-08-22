@@ -39,11 +39,11 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
         String sql = "SELECT id, title, description, date_created FROM question WHERE id = ?";
 
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
 
-            try (ResultSet rs = stmt.executeQuery()){
-                if (rs.next()){
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
 
                     Question question = new Question(
                             rs.getInt("id"),
@@ -94,17 +94,49 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public void update(int id, String title, String description) {
+        String sql = "UPDATE question SET title = ?, description = ?, WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, title);
+            pstmt.setString(3, description);
 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
+        String sql = "DELETE FROM question WHERE id = ?";
 
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public void deleteAll() {
+    public boolean deleteAll() {
+        String sql = "DELETE FROM question";
 
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 }
