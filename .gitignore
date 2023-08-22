@@ -27,3 +27,4 @@ target/
 .idea/
 /mvnw
 /mvnw.cmd
+src/main/java/com/codecool/stackoverflowtw/service/SqlConnector.java
