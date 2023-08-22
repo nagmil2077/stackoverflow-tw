@@ -7,7 +7,6 @@ import com.codecool.stackoverflowtw.dao.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +26,10 @@ public class QuestionService {
 
         for (Question questionDAO : questionDAOList) {
             questionDTOList.add(new QuestionDTO(
-                    questionDAO.getId(),
-                    questionDAO.getTitle(),
-                    questionDAO.getDescription(),
-                    questionDAO.getLocalDate().atStartOfDay()));
+                    questionDAO.id(),
+                    questionDAO.title(),
+                    questionDAO.description(),
+                    questionDAO.localDate().atStartOfDay()));
         }
 
         return questionDTOList;
@@ -39,10 +38,10 @@ public class QuestionService {
     public QuestionDTO getQuestionById(int id) {
         Question question = questionsDAO.get(id);
         return new QuestionDTO(
-                question.getId(),
-                question.getTitle(),
-                question.getDescription(),
-                question.getLocalDate().atStartOfDay());
+                question.id(),
+                question.title(),
+                question.description(),
+                question.localDate().atStartOfDay());
     }
 
     public boolean deleteQuestionById(int id) {
@@ -51,7 +50,7 @@ public class QuestionService {
 
     public int addNewQuestion(NewQuestionDTO question) {
         int createdId = 0;
-        questionsDAO.add(question);
+        questionsDAO.add(createdId, question.title(), question.description());
         return createdId;
     }
 }

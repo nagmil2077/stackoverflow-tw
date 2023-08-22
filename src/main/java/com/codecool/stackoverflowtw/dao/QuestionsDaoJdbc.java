@@ -29,7 +29,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public void add(String title, String description) {
+    public void add(int id, String title, String description) {
 
     }
 
