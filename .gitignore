@@ -27,4 +27,3 @@ target/
 .idea/
 /mvnw
 /mvnw.cmd
-SqlConnector.java
