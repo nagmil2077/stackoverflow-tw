@@ -17,5 +17,5 @@ public interface QuestionsDAO {
     // DELETE
     boolean delete(int id);
     // DELETE ALL
-    void deleteAll();
+    boolean deleteAll();
 }

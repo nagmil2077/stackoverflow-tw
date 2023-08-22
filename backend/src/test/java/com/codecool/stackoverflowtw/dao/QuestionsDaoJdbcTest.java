@@ -1,17 +1,18 @@
 package com.codecool.stackoverflowtw.dao;
 
 import com.codecool.stackoverflowtw.dao.model.Question;
+import com.codecool.stackoverflowtw.service.SqlConnector;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class QuestionsDaoJdbcTest {
+
+
 
     @Test
     void getAll() {
-        QuestionsDAO questionsDAO = new QuestionsDaoJdbc();
+        QuestionsDAO questionsDAO = new QuestionsDaoJdbc(new SqlConnector());
         List<Question> questionList = questionsDAO.getAll();
         System.out.println(questionList);
     }
