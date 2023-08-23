@@ -1,6 +1,7 @@
 package com.codecool.stackoverflowtw.controller;
 
 import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.NewAnswerDTO;
 import com.codecool.stackoverflowtw.service.AnswerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,12 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-//    @PostMapping("/")
-//    public int addNewAnswer(@RequestBody NewAnswerDTO answer) {
-//        return answerService.addNewAnswer(answer);
-//    }
+    @PatchMapping("/{id}")
+    public AnswerDTO updateAnswer(@PathVariable int id, @RequestBody NewAnswerDTO description) {
+        answerService.updateAnswer(id, description.description());
+
+        return answerService.getAnswerByAnswerId(id);
+    }
 
     @GetMapping("/all/{id}")
     public List<AnswerDTO> getAnswersByQuestionId(@PathVariable int id) {
@@ -31,12 +34,4 @@ public class AnswerController {
     public AnswerDTO getQuestionById(@PathVariable int id) {
         return answerService.getAnswerByAnswerId(id);
     }
-
-//    @PatchMapping("/update/{id}")
-//    public AnswerDTO updateAnswerById(@PathVariable int id, @RequestBody NewAnswerDTO answer) {
-//        answerService.updateAnswer(id, answer.description());
-//
-//        return answerService.getAnswerById(id);
-//    }
-
 }

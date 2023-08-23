@@ -12,19 +12,14 @@ import java.util.List;
 @Service
 public class AnswerService {
 
-    private AnswersDAO answersDAO;
+    private final AnswersDAO answersDAO;
 
     @Autowired
     public AnswerService(AnswersDAO answersDAO) {
         this.answersDAO = answersDAO;
     }
 
-//    public int addNewAnswer(NewAnswerDTO answer) {
-//
-//    }
-
     public List<AnswerDTO> getAnswersByQuestionId(int id) {
-        System.out.println("BACKEND ID: " + id);
         List<Answer> answerDAOList = answersDAO.getAll(id);
         List<AnswerDTO> answerDTOList = new ArrayList<>();
 
@@ -46,5 +41,11 @@ public class AnswerService {
                 answer.questionId(),
                 answer.description(),
                 answer.localDateTime());
+    }
+
+    public void updateAnswer(int id, String answer) {
+        System.out.println(id);
+        System.out.println(answer);
+        answersDAO.update(id, answer);
     }
 }

@@ -1,7 +1,6 @@
 package com.codecool.stackoverflowtw.dao;
 
 import com.codecool.stackoverflowtw.dao.model.Answer;
-import com.codecool.stackoverflowtw.dao.model.Question;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface AnswersDAO {
     // READ ALL
     List<Answer> getAll(int id);
     // UPDATE
-    void update(int id, String title, String description);
+    void update(int id, String description);
     // DELETE
     boolean delete(int id);
     // DELETE ALL
