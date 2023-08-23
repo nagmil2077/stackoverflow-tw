@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS answer
     answer TEXT,
     question_id INT,
     date_created TIMESTAMP,
-    FOREIGN KEY (question_id) REFERENCES question (question_id)
+    FOREIGN KEY (question_id) REFERENCES question (question_id) ON DELETE CASCADE
     );
