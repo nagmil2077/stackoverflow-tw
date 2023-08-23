@@ -9,6 +9,7 @@ import Layout from "./Components/Pages/Layout";
 import MainPage from "./Components/Pages/MainPage";
 import QuestionCreator from "./Components/Pages/QuestionCreator";
 import QuestionUpdater from "./Components/Pages/QuestionUpdater";
+import AnswerTable from "./Components/AnswerTable";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: "/update/:id",
                 element: <QuestionUpdater />,
+            },
+            {
+                path: "/question/:id",
+                element: <AnswerTable />,
             }
         ],
     },
