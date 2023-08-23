@@ -22,14 +22,14 @@ public class AnswersDaoJdbc implements AnswersDAO {
     }
 
     @Override
-    public void add(int id, String title, String description) {
-        String sql = "INSERT INTO question(title, description, date_created) VALUES (?, ?, ?)";
+    public void add(int id, String answer) {
+        String sql = "INSERT INTO answer(answer, question_id, date_created) VALUES (?, ?, ?)";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, title);
-            pstmt.setString(2, description);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, id);
 
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
 

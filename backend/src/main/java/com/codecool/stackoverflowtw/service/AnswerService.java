@@ -1,6 +1,7 @@
 package com.codecool.stackoverflowtw.service;
 
 import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.NewAnswerDTO;
 import com.codecool.stackoverflowtw.dao.AnswersDAO;
 import com.codecool.stackoverflowtw.dao.model.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class AnswerService {
     @Autowired
     public AnswerService(AnswersDAO answersDAO) {
         this.answersDAO = answersDAO;
+    }
+
+    public int addNewAnswer(int id, NewAnswerDTO answer) {
+        int createdId = 0;
+        answersDAO.add(id, answer.description());
+        return createdId;
     }
 
     public List<AnswerDTO> getAnswersByQuestionId(int id) {

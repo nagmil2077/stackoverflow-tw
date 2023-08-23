@@ -21,7 +21,7 @@ const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
             )}
 
             <div className="control">
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="description">Answer:</label>
                 <input
                     name="description"
                     id="description"
@@ -31,7 +31,7 @@ const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
 
             <div className="buttons">
                 <button type="submit" disabled={disabled}>
-                    {answer ? "Edit Answer" : "Create Answer"}
+                    {answer ? "Edit Answer" : "Send Answer"}
                 </button>
 
                 <button type="button" onClick={onCancel}>

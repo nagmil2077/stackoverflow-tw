@@ -2,8 +2,8 @@ import {useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import AnswerForm from "../AnswerForm";
 
-const createAnswer = (answer) => {
-    return fetch("/questions/", {
+const createAnswer = (id, answer) => {
+    return fetch(`/answers/${id}/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const AnswerCreator = () => {
     const handleCreateAnswer = (answer) => {
         setLoading(true);
 
-        createAnswer(answer)
+        createAnswer(id, answer)
             .then(() => {
                 setLoading(false);
                 navigate(`/question/${id}`);

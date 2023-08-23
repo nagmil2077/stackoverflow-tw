@@ -2,6 +2,7 @@ package com.codecool.stackoverflowtw.controller;
 
 import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.NewAnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.service.AnswerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,11 @@ public class AnswerController {
 
     public AnswerController(AnswerService answerService) {
         this.answerService = answerService;
+    }
+
+    @PostMapping("/{id}/create")
+    public int addNewAnswer(@PathVariable int id, @RequestBody NewAnswerDTO answer) {
+        return answerService.addNewAnswer(id, answer);
     }
 
     @PatchMapping("/{id}")
