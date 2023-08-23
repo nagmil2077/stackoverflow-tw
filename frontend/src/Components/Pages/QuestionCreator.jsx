@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import QuestionForm from "../QuestionForm";
 
 const createQuestion = (question) => {
-    console.log(question)
     return fetch("/questions/", {
         method: "POST",
         headers: {
@@ -11,7 +10,6 @@ const createQuestion = (question) => {
         },
         body: JSON.stringify(question),
     }).then((res) => {
-        console.log(res)
         return res.json()
     });
 };
