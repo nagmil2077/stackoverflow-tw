@@ -14,7 +14,7 @@ const Layout = () => {
                         <Link to="/">Questions</Link>
                     </li>
                     <li>
-                        <Link to="/create/answer">
+                        <Link to={`/question/${params.id}/create`}>
                             <button type="button">Create Answer</button>
                         </Link>
                         <Link to="/create">

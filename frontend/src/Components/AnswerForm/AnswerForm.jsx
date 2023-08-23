@@ -1,4 +1,5 @@
 const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
+
     const onSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -24,7 +25,7 @@ const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
                 <input
                     name="description"
                     id="description"
-                    defaultValue={answer.description}
+                    defaultValue={answer ? answer.description : ""}
                 />
             </div>
 
