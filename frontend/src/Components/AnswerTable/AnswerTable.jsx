@@ -8,7 +8,7 @@ const fetchQuestion = (id) => {
 };
 
 const fetchAnswers = (id) => {
-    console.log(id)
+    console.log("FRONTEND ID: " + id)
     return fetch(`/answers/${id}`).then((res) => res.json());
 };
 
@@ -29,14 +29,14 @@ const AnswerTable = () => {
         setQuestionLoading(true);
         fetchQuestion(id)
             .then((question) => {
-                console.log(question)
                 setQuestion(question);
                 setQuestionLoading(false);
             })
             .then(() => {
                 fetchAnswers(id)
                     .then((answers) => {
-                        setAnswers([]); // NEED TO BE SWITCHED AS WIRED
+                        console.log(answers)
+                        setAnswers(answers);
                         setAnswerLoading(false);
                     })
             })

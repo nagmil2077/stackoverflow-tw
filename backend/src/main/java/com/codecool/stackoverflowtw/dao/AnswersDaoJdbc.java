@@ -78,25 +78,29 @@ public class AnswersDaoJdbc implements AnswersDAO {
 
     @Override
     public List<Answer> getAll(int id) {
-        String sql = "SELECT id, answer, date_created FROM answer " +
-                "JOIN question ON question.question_id = answer.question_id " +
-                "WHERE question_id = ?" +
-                "ORDER BY answer_id";
+        System.out.println("ANSWER JDBC: " + id);
+        String sql = "SELECT a.answer_id, a.answer, a.question_id, a.date_created FROM answer a " +
+                "JOIN question q ON q.question_id = a.question_id " +
+                "WHERE a.question_id = ? " +
+                "ORDER BY a.answer_id";
         List<Answer> answers = new ArrayList<>();
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery(sql);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
+                System.out.println(rs);
                 System.out.println(
-                        rs.getInt("id") + "\t" +
+                        rs.getInt("answer_id") + "\t" +
                                 rs.getString("answer") + "\t" +
+                                rs.getInt("question_id") + "\t" +
                                 rs.getTimestamp("date_created"));
                 answers.add(new Answer(
                         rs.getInt("answer_id"),
-                        rs.getInt("id"),
+                        rs.getInt("question_id"),
                         rs.getString("answer"),
                         rs.getTimestamp("date_created").toLocalDateTime()));
             }

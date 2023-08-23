@@ -27,6 +27,7 @@ public class AnswerService {
 //    }
 
     public List<AnswerDTO> getAnswersById(int id) {
+        System.out.println("BACKEND ID: " + id);
         List<Answer> answerDAOList = answersDAO.getAll(id);
         List<AnswerDTO> answerDTOList = new ArrayList<>();
 

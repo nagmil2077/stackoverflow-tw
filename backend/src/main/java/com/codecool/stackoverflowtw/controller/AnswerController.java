@@ -25,7 +25,7 @@ public class AnswerController {
 
     @GetMapping("/{id}")
     public List<AnswerDTO> getAnswersByQuestionId(@PathVariable int id) {
-        System.out.println(id);
+        System.out.println("ANSWER CONTROLLER: " + id);
         return answerService.getAnswersById(id);
     }
 
