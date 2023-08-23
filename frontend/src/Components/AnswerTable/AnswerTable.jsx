@@ -8,8 +8,9 @@ const fetchQuestion = (id) => {
 };
 
 const fetchAnswers = (id) => {
-    console.log("FRONTEND ID: " + id)
-    return fetch(`/answers/${id}`).then((res) => res.json());
+    return fetch(`/answers/all/${id}`).then((res) => {
+        console.log(res)
+        return res.json()});
 };
 
 const deleteAnswer = (id) => {
@@ -35,7 +36,6 @@ const AnswerTable = () => {
             .then(() => {
                 fetchAnswers(id)
                     .then((answers) => {
-                        console.log(answers)
                         setAnswers(answers);
                         setAnswerLoading(false);
                     })
@@ -73,8 +73,8 @@ const AnswerTable = () => {
                             <td>{answer.description}</td>
                             <td>{answer.created}</td>
                             <td>
-                                <Link to={`question/update/${answer.id}`}>
-                                    <button type="button">Update</button>
+                                <Link to={`/question/${id}/update/${answer.id}`}>
+                                    <button type="button">Edit</button>
                                 </Link>
                                 <button type="button" onClick={() => handleDelete(answer.id)}>
                                     Delete
