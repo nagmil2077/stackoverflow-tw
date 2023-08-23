@@ -13,7 +13,6 @@ const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
         return onSave(answer);
     };
 
-    console.log("AnswerForm: " + answer.description)
     return (
         <form className="AnswerForm" onSubmit={onSubmit}>
             {answer && (
@@ -31,7 +30,7 @@ const AnswerForm = ({answer, onSave, disabled, onCancel}) => {
 
             <div className="buttons">
                 <button type="submit" disabled={disabled}>
-                    {answer ? "Update Answer" : "Create Answer"}
+                    {answer ? "Edit Answer" : "Create Answer"}
                 </button>
 
                 <button type="button" onClick={onCancel}>
