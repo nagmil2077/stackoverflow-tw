@@ -9,11 +9,12 @@ const fetchQuestion = (id) => {
 
 const fetchAnswers = (id) => {
     return fetch(`/answers/all/${id}`).then((res) => {
-        return res.json()});
+        return res.json()
+    });
 };
 
 const deleteAnswer = (id) => {
-    return fetch(`/questions/${id}`, {method: "DELETE"}).then((res) =>
+    return fetch(`/answers/${id}`, {method: "DELETE"}).then((res) =>
         res.json());
 };
 
@@ -86,6 +87,7 @@ const AnswerTable = () => {
             </table>
         </div>
     </>)
+
 };
 
 export default AnswerTable;

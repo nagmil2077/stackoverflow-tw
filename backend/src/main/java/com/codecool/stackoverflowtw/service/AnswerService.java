@@ -51,8 +51,10 @@ public class AnswerService {
     }
 
     public void updateAnswer(int id, String answer) {
-        System.out.println(id);
-        System.out.println(answer);
         answersDAO.update(id, answer);
+    }
+
+    public boolean deleteAnswerById(int id) {
+        return answersDAO.delete(id);
     }
 }

@@ -40,4 +40,9 @@ public class AnswerController {
     public AnswerDTO getQuestionById(@PathVariable int id) {
         return answerService.getAnswerByAnswerId(id);
     }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteAnswerById(@PathVariable int id) {
+        return answerService.deleteAnswerById(id);
+    }
 }
