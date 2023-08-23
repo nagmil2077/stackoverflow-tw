@@ -32,7 +32,6 @@ public class AnswersDaoJdbc implements AnswersDAO {
             pstmt.setString(2, description);
 
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
-            System.out.println("Generated Timestamp: " + timestamp);
 
             pstmt.setTimestamp(3, timestamp);
 
@@ -54,11 +53,11 @@ public class AnswersDaoJdbc implements AnswersDAO {
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
 
-                    System.out.println(
-                            rs.getInt("answer_id") + "\t" +
-                                    rs.getString("answer") + "\t" +
-                                    rs.getInt("question_id") + "\t" +
-                                    rs.getTimestamp("date_created"));
+//                    System.out.println(
+//                            rs.getInt("answer_id") + "\t" +
+//                                    rs.getString("answer") + "\t" +
+//                                    rs.getInt("question_id") + "\t" +
+//                                    rs.getTimestamp("date_created"));
 
                     Answer question = new Answer(
                             rs.getInt("answer_id"),
@@ -78,7 +77,6 @@ public class AnswersDaoJdbc implements AnswersDAO {
 
     @Override
     public List<Answer> getAll(int id) {
-        System.out.println("ANSWER JDBC: " + id);
         String sql = "SELECT a.answer_id, a.answer, a.question_id, a.date_created FROM answer a " +
                 "JOIN question q ON q.question_id = a.question_id " +
                 "WHERE a.question_id = ? " +
@@ -92,12 +90,11 @@ public class AnswersDaoJdbc implements AnswersDAO {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                System.out.println(rs);
-                System.out.println(
-                        rs.getInt("answer_id") + "\t" +
-                                rs.getString("answer") + "\t" +
-                                rs.getInt("question_id") + "\t" +
-                                rs.getTimestamp("date_created"));
+//                System.out.println(
+//                        rs.getInt("answer_id") + "\t" +
+//                                rs.getString("answer") + "\t" +
+//                                rs.getInt("question_id") + "\t" +
+//                                rs.getTimestamp("date_created"));
                 answers.add(new Answer(
                         rs.getInt("answer_id"),
                         rs.getInt("question_id"),
@@ -112,15 +109,14 @@ public class AnswersDaoJdbc implements AnswersDAO {
     }
 
     @Override
-    public void update(int id, String title, String description) {
-        String sql = "UPDATE question SET title = ?, description = ? WHERE id = ?";
+    public void update(int id, String answer) {
+        String sql = "UPDATE answer SET answer = ? WHERE answer_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, title);
-            pstmt.setString(2, description);
-            pstmt.setInt(3, id);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, id);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -131,7 +127,7 @@ public class AnswersDaoJdbc implements AnswersDAO {
 
     @Override
     public boolean delete(int id) {
-        String sql = "DELETE FROM question WHERE id = ?";
+        String sql = "DELETE FROM answer WHERE answer_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -152,7 +148,6 @@ public class AnswersDaoJdbc implements AnswersDAO {
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
