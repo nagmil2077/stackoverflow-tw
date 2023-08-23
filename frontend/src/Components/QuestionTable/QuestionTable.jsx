@@ -1,8 +1,9 @@
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import "./QuestionTable.css";
 
-const QuestionTable = ({questions, onDelete}) => (
-    <div className="QuestionTable">
+
+const QuestionTable = ({questions, onDelete}) => {
+    return <div className="QuestionTable">
         <table>
             <thead>
             <tr>
@@ -17,7 +18,7 @@ const QuestionTable = ({questions, onDelete}) => (
             {questions.map((question) => {
                     return <tr key={question.id}>
                         <td>{question.id}</td>
-                        <td>{question.title}</td>
+                        <td><Link to={`/question/${question.id}`}><b>{question.title}</b></Link></td>
                         <td>{question.description}</td>
                         <td>{question.created}</td>
                         <td>
@@ -34,6 +35,6 @@ const QuestionTable = ({questions, onDelete}) => (
             </tbody>
         </table>
     </div>
-);
+};
 
 export default QuestionTable;
