@@ -23,7 +23,7 @@ const QuestionTable = ({questions, onDelete}) => {
                         <td>{question.created}</td>
                         <td>
                             <Link to={`/update/${question.id}`}>
-                                <button type="button">Update</button>
+                                <button type="button">Edit</button>
                             </Link>
                             <button type="button" onClick={() => onDelete(question.id)}>
                                 Delete
