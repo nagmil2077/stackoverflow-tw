@@ -77,7 +77,8 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public List<Question> getAll() {
-        String sql = "SELECT id, title, description, date_created FROM question";
+        String sql = "SELECT id, title, description, date_created FROM question " +
+                "ORDER BY id";
         List<Question> questions = new ArrayList<>();
 
         try (Connection conn = sqlConnector.getConnection();
@@ -104,13 +105,14 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public void update(int id, String title, String description) {
-        String sql = "UPDATE question SET title = ?, description = ?, WHERE id = ?";
+        String sql = "UPDATE question SET title = ?, description = ? WHERE id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.setString(2, title);
-            pstmt.setString(3, description);
+
+            pstmt.setString(1, title);
+            pstmt.setString(2, description);
+            pstmt.setInt(3, id);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

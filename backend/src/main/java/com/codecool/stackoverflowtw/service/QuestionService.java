@@ -44,9 +44,9 @@ public class QuestionService {
                 question.localDateTime());
     }
 
-//    public void updateQuestion(int id, String title, String description) {
-//        questionsDAO.update(id, title, description);
-//    }
+    public void updateQuestion(int id, String title, String description) {
+        questionsDAO.update(id, title, description);
+    }
 
     public boolean deleteQuestionById(int id) {
         return questionsDAO.delete(id);
