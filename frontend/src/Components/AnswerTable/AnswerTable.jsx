@@ -7,8 +7,9 @@ const fetchQuestion = (id) => {
     return fetch(`/questions/${id}`).then((res) => res.json());
 };
 
-const fetchAnswers = () => {
-    return fetch("/answers/all").then((res) => res.json());
+const fetchAnswers = (id) => {
+    console.log(id)
+    return fetch(`/answers/${id}`).then((res) => res.json());
 };
 
 const deleteAnswer = (id) => {
@@ -33,7 +34,7 @@ const AnswerTable = () => {
                 setQuestionLoading(false);
             })
             .then(() => {
-                fetchAnswers()
+                fetchAnswers(id)
                     .then((answers) => {
                         setAnswers([]); // NEED TO BE SWITCHED AS WIRED
                         setAnswerLoading(false);
