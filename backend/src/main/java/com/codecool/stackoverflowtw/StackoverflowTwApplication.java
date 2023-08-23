@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 public class StackoverflowTwApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(StackoverflowTwApplication.class, args);
     }
 
