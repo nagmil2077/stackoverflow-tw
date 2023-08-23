@@ -44,7 +44,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public Question get(int id) {
-        String sql = "SELECT id, title, description, date_created FROM question WHERE id = ?";
+        String sql = "SELECT question_id, title, description, date_created FROM question WHERE question_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -54,13 +54,13 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
                 if (rs.next()) {
 
                     Question question = new Question(
-                            rs.getInt("id"),
+                            rs.getInt("question_id"),
                             rs.getString("title"),
                             rs.getString("description"),
                             rs.getTimestamp("date_created").toLocalDateTime());
 
                     System.out.println(
-                            rs.getInt("id") + "\t" +
+                            rs.getInt("question_id") + "\t" +
                                     rs.getString("title") + "\t" +
                                     rs.getString("description") + "\t" +
                                     rs.getTimestamp("date_created"));
@@ -77,8 +77,8 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public List<Question> getAll() {
-        String sql = "SELECT id, title, description, date_created FROM question " +
-                "ORDER BY id";
+        String sql = "SELECT question_id, title, description, date_created FROM question " +
+                "ORDER BY question_id";
         List<Question> questions = new ArrayList<>();
 
         try (Connection conn = sqlConnector.getConnection();
@@ -86,12 +86,12 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
+                System.out.println(rs.getInt("question_id") + "\t" +
                         rs.getString("title") + "\t" +
                         rs.getString("description") + "\t" +
                         rs.getTimestamp("date_created"));
                 questions.add(new Question(
-                        rs.getInt("id"),
+                        rs.getInt("question_id"),
                         rs.getString("title"),
                         rs.getString("description"),
                         rs.getTimestamp("date_created").toLocalDateTime()));
@@ -105,7 +105,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public void update(int id, String title, String description) {
-        String sql = "UPDATE question SET title = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE question SET title = ?, description = ? WHERE question_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -123,7 +123,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public boolean delete(int id) {
-        String sql = "DELETE FROM question WHERE id = ?";
+        String sql = "DELETE FROM question WHERE question_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
