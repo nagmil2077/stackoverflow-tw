@@ -11,7 +11,6 @@ const updateQuestion = (question) => {
         },
         body: JSON.stringify(question),
     }).then((res) => {
-        console.log(res.status)
         return res.json()
     });
 };
