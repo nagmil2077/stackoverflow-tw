@@ -9,7 +9,6 @@ const fetchQuestion = (id) => {
 
 const fetchAnswers = (id) => {
     return fetch(`/answers/all/${id}`).then((res) => {
-        console.log(res)
         return res.json()});
 };
 
@@ -61,7 +60,7 @@ const AnswerTable = () => {
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Description</th>
+                    <th>Answer</th>
                     <th>Timestamp</th>
                     <th/>
                 </tr>

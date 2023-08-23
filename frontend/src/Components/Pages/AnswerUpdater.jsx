@@ -4,8 +4,7 @@ import Loading from "../Loading";
 import AnswerForm from "../AnswerForm";
 
 const updateAnswer = (answer) => {
-    console.log("updateAnswer(): " + answer.description)
-    return fetch(`/questions/update/${answer.id}`, {
+    return fetch(`/answers/${answer.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -19,7 +18,6 @@ const updateAnswer = (answer) => {
 const fetchAnswer = (id) => {
     console.log(id)
     return fetch(`/answers/${id}`).then((res) => {
-        console.log(res)
         return res.json()});
 };
 
