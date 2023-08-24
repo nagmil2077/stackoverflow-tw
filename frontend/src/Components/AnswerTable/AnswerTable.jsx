@@ -60,18 +60,18 @@ const AnswerTable = () => {
             <table>
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    {/*<th>ID</th>*/}
                     <th>Answer</th>
-                    <th>Timestamp</th>
+                    <th>Date and time</th>
                     <th/>
                 </tr>
                 </thead>
                 <tbody>
                 {answers.map((answer) => {
                         return <tr key={answer.id}>
-                            <td>{answer.id}</td>
+                            {/*<td>{answer.id}</td>*/}
                             <td>{answer.description}</td>
-                            <td>{answer.created}</td>
+                            <td>{answer.created.substring(0,16).replaceAll("T", " ")}</td>
                             <td>
                                 <Link to={`/question/${id}/update/${answer.id}`}>
                                     <button type="button">Edit</button>
