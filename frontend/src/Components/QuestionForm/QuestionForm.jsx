@@ -20,13 +20,13 @@ const QuestionForm = ({ question, onSave, disabled, onCancel }) => {
             )}
 
             <div className="control">
-                <label htmlFor="title">Title:</label>
+                <label htmlFor="title">Topic:</label>
                 <input
                     name="title"
                     id="title"
                     defaultValue={question ? question.title : ''}
                 />
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="description">Question:</label>
                 <input
                     name="description"
                     id="description"
