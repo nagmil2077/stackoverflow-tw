@@ -16,7 +16,6 @@ const updateAnswer = (answer) => {
 };
 
 const fetchAnswer = (id) => {
-    console.log(id)
     return fetch(`/answers/${id}`).then((res) => {
         return res.json()});
 };

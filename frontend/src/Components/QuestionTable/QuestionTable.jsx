@@ -8,8 +8,8 @@ const QuestionTable = ({questions, onDelete}) => {
             <thead>
             <tr>
                 {/*<th>ID</th>*/}
-                <th>Title</th>
-                <th>Description</th>
+                <th>Topic</th>
+                <th>Question</th>
                 <th>Date and time</th>
                 <th/>
             </tr>
