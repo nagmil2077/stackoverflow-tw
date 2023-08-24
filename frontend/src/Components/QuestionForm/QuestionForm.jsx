@@ -24,11 +24,13 @@ const QuestionForm = ({ question, onSave, disabled, onCancel }) => {
                 <input
                     name="title"
                     id="title"
+                    defaultValue={question ? question.title : ''}
                 />
                 <label htmlFor="description">Description:</label>
                 <input
                     name="description"
                     id="description"
+                    defaultValue={question ? question.description : ''}
                 />
             </div>
 

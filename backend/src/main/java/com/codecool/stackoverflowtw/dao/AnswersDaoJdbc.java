@@ -1,6 +1,6 @@
 package com.codecool.stackoverflowtw.dao;
 
-import com.codecool.stackoverflowtw.dao.model.Question;
+import com.codecool.stackoverflowtw.dao.model.Answer;
 import com.codecool.stackoverflowtw.service.SqlConnector;
 
 import java.sql.*;
@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionsDaoJdbc implements QuestionsDAO {
+public class AnswersDaoJdbc implements AnswersDAO {
 
     private final SqlConnector sqlConnector;
 
-    public QuestionsDaoJdbc(SqlConnector sqlConnector) {
+    public AnswersDaoJdbc(SqlConnector sqlConnector) {
         this.sqlConnector = sqlConnector;
     }
 
@@ -22,17 +22,16 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public void add(int id, String title, String description) {
-        String sql = "INSERT INTO question(title, description, date_created) VALUES (?, ?, ?)";
+    public void add(int id, String answer) {
+        String sql = "INSERT INTO answer(answer, question_id, date_created) VALUES (?, ?, ?)";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, title);
-            pstmt.setString(2, description);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, id);
 
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
-            System.out.println("Generated Timestamp: " + timestamp);
 
             pstmt.setTimestamp(3, timestamp);
 
@@ -43,27 +42,28 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public Question get(int id) {
-        String sql = "SELECT question_id, title, description, date_created FROM question WHERE question_id = ?";
+    public Answer get(int id) {
+        String sql = "SELECT answer_id, answer, question_id, date_created FROM answer " +
+                "WHERE answer_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
+                while (rs.next()) {
 
-                    Question question = new Question(
+//                    System.out.println(
+//                            rs.getInt("answer_id") + "\t" +
+//                                    rs.getString("answer") + "\t" +
+//                                    rs.getInt("question_id") + "\t" +
+//                                    rs.getTimestamp("date_created"));
+
+                    Answer question = new Answer(
+                            rs.getInt("answer_id"),
                             rs.getInt("question_id"),
-                            rs.getString("title"),
-                            rs.getString("description"),
+                            rs.getString("answer"),
                             rs.getTimestamp("date_created").toLocalDateTime());
-
-                    System.out.println(
-                            rs.getInt("question_id") + "\t" +
-                                    rs.getString("title") + "\t" +
-                                    rs.getString("description") + "\t" +
-                                    rs.getTimestamp("date_created"));
 
                     return question;
                 }
@@ -76,43 +76,47 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public List<Question> getAll() {
-        String sql = "SELECT question_id, title, description, date_created FROM question " +
-                "ORDER BY question_id";
-        List<Question> questions = new ArrayList<>();
+    public List<Answer> getAll(int id) {
+        String sql = "SELECT a.answer_id, a.answer, a.question_id, a.date_created FROM answer a " +
+                "JOIN question q ON q.question_id = a.question_id " +
+                "WHERE a.question_id = ? " +
+                "ORDER BY a.answer_id";
+        List<Answer> answers = new ArrayList<>();
 
         try (Connection conn = sqlConnector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                System.out.println(rs.getInt("question_id") + "\t" +
-                        rs.getString("title") + "\t" +
-                        rs.getString("description") + "\t" +
-                        rs.getTimestamp("date_created"));
-                questions.add(new Question(
+//                System.out.println(
+//                        rs.getInt("answer_id") + "\t" +
+//                                rs.getString("answer") + "\t" +
+//                                rs.getInt("question_id") + "\t" +
+//                                rs.getTimestamp("date_created"));
+                answers.add(new Answer(
+                        rs.getInt("answer_id"),
                         rs.getInt("question_id"),
-                        rs.getString("title"),
-                        rs.getString("description"),
+                        rs.getString("answer"),
                         rs.getTimestamp("date_created").toLocalDateTime()));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        return questions;
+        return answers;
     }
 
     @Override
-    public void update(int id, String title, String description) {
-        String sql = "UPDATE question SET title = ?, description = ? WHERE question_id = ?";
+    public void update(int id, String answer) {
+        String sql = "UPDATE answer SET answer = ? WHERE answer_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, title);
-            pstmt.setString(2, description);
-            pstmt.setInt(3, id);
+            pstmt.setString(1, answer);
+            pstmt.setInt(2, id);
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -123,7 +127,7 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
     @Override
     public boolean delete(int id) {
-        String sql = "DELETE FROM question WHERE question_id = ?";
+        String sql = "DELETE FROM answer WHERE answer_id = ?";
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -144,7 +148,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
 
         try (Connection conn = sqlConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
 
             pstmt.executeUpdate();
         } catch (SQLException e) {

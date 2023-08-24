@@ -9,6 +9,9 @@ import Layout from "./Components/Pages/Layout";
 import MainPage from "./Components/Pages/MainPage";
 import QuestionCreator from "./Components/Pages/QuestionCreator";
 import QuestionUpdater from "./Components/Pages/QuestionUpdater";
+import AnswerTable from "./Components/AnswerTable";
+import AnswerUpdater from "./Components/Pages/AnswerUpdater";
+import AnswerCreator from "./Components/Pages/AnswerCreator";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
             {
                 path: "/update/:id",
                 element: <QuestionUpdater />,
+            },
+            {
+                path: "/question/:id",
+                element: <AnswerTable />,
+            },
+            {
+                path: "/question/:id/update/:id",
+                element: <AnswerUpdater />,
+            },
+            {
+                path: "/question/:id/create",
+                element: <AnswerCreator />,
             }
         ],
     },

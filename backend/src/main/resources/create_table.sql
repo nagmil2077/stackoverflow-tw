@@ -1,15 +1,17 @@
 CREATE TABLE IF NOT EXISTS question
 (
-    id SERIAL PRIMARY KEY,
-    title TEXT,
-    description TEXT,
+    question_id  SERIAL PRIMARY KEY,
+    title        TEXT,
+    description  TEXT,
     date_created TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS answer
 (
-    answer_id SERIAL PRIMARY KEY,
-    answer TEXT,
-    id INT,
-    FOREIGN KEY (id) REFERENCES question (id)
+    answer_id    SERIAL PRIMARY KEY,
+    answer       TEXT,
+    question_id  INT,
+    date_created TIMESTAMP,
+    FOREIGN KEY (question_id) REFERENCES question (question_id)
+        ON DELETE CASCADE
 );

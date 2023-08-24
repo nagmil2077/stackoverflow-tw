@@ -44,11 +44,11 @@ table {
 }
 
 table tbody tr {
-  background-color: rgb(198, 218, 255);
+  background-color: rgb(250, 195, 127);
 }
 
 table tbody tr:nth-child(even) {
-  background-color: rgb(219, 230, 255);
+  background-color: rgb(243, 210, 170);
 }
 
 table td,
