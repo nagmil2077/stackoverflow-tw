@@ -35,7 +35,7 @@ const QuestionUpdater = () => {
                 setQuestion(question);
                 setQuestionLoading(false);
             })
-    }, [id]);
+    }, [questionId]);
 
     const handleUpdateQuestion = (question) => {
         setUpdateLoading(true);
