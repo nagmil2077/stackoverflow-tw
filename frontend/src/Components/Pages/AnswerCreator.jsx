@@ -16,16 +16,16 @@ const createAnswer = (id, answer) => {
 
 const AnswerCreator = () => {
     const navigate = useNavigate();
-    const {id} = useParams();
+    const {questionId} = useParams();
     const [loading, setLoading] = useState(false);
 
     const handleCreateAnswer = (answer) => {
         setLoading(true);
 
-        createAnswer(id, answer)
+        createAnswer(questionId, answer)
             .then(() => {
                 setLoading(false);
-                navigate(`/question/${id}`);
+                navigate(`/question/${questionId}`);
             })
     };
 
@@ -33,7 +33,7 @@ const AnswerCreator = () => {
         <AnswerForm
             onSave={handleCreateAnswer}
             disabled={loading}
-            onCancel={() => navigate(`/question/${id}`)}
+            onCancel={() => navigate(`/question/${questionId}`)}
         />
     );
 };

@@ -21,11 +21,9 @@ const fetchAnswer = (id) => {
 };
 
 const AnswerUpdater = () => {
-    const {id} = useParams();
+    const {answerId, questionId} = useParams();
     const navigate = useNavigate();
     const path = useLocation();
-    // NOT THE BEST SOLUTION, CANT TAKE BOTH ID'S FROM PARAMS, MAYBE OVERWRITTEN CAUSE OF SAME NAME?
-    const questionId = path.pathname.substring(10, 11);
 
     const [answer, setAnswer] = useState(null);
     const [updateLoading, setUpdateLoading] = useState(false);
@@ -34,12 +32,12 @@ const AnswerUpdater = () => {
 
     useEffect(() => {
         setAnswerLoading(true);
-        fetchAnswer(id)
+        fetchAnswer(answerId)
             .then((answer) => {
                 setAnswer(answer);
                 setAnswerLoading(false);
             })
-    }, [id]);
+    }, [answerId, questionId]);
 
     const handleUpdateAnswer = (answer) => {
         setUpdateLoading(true);

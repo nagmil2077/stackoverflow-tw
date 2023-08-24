@@ -28,19 +28,19 @@ const router = createBrowserRouter([
                 element: <QuestionCreator />,
             },
             {
-                path: "/update/:id",
+                path: "/update/:questionId",
                 element: <QuestionUpdater />,
             },
             {
-                path: "/question/:id",
+                path: "/question/:questionId",
                 element: <AnswerTable />,
             },
             {
-                path: "/question/:id/update/:id",
+                path: "/question/:questionId/update/:answerId",
                 element: <AnswerUpdater />,
             },
             {
-                path: "/question/:id/create",
+                path: "/question/:questionId/create",
                 element: <AnswerCreator />,
             }
         ],

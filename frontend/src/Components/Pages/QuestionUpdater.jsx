@@ -20,7 +20,7 @@ const fetchQuestion = (id) => {
 };
 
 const QuestionUpdater = () => {
-    const {id} = useParams();
+    const {questionId} = useParams();
     const navigate = useNavigate();
 
     const [question, setQuestion] = useState(null);
@@ -30,7 +30,7 @@ const QuestionUpdater = () => {
 
     useEffect(() => {
         setQuestionLoading(true);
-        fetchQuestion(id)
+        fetchQuestion(questionId)
             .then((question) => {
                 setQuestion(question);
                 setQuestionLoading(false);

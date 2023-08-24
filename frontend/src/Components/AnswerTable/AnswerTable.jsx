@@ -19,8 +19,7 @@ const deleteAnswer = (id) => {
 };
 
 const AnswerTable = () => {
-    const {id} = useParams();
-    const params = useParams();
+    const {questionId} = useParams();
 
     const [question, setQuestion] = useState(null);
     const [questionLoading, setQuestionLoading] = useState(true);
@@ -29,19 +28,19 @@ const AnswerTable = () => {
 
     useEffect(() => {
         setQuestionLoading(true);
-        fetchQuestion(id)
+        fetchQuestion(questionId)
             .then((question) => {
                 setQuestion(question);
                 setQuestionLoading(false);
             })
             .then(() => {
-                fetchAnswers(id)
+                fetchAnswers(questionId)
                     .then((answers) => {
                         setAnswers(answers);
                         setAnswerLoading(false);
                     })
             })
-    }, [id]);
+    }, [questionId]);
 
     const handleDelete = (id) => {
         deleteAnswer(id);
@@ -72,9 +71,9 @@ const AnswerTable = () => {
                         return <tr key={answer.id}>
                             {/*<td>{answer.id}</td>*/}
                             <td>{answer.description}</td>
-                            <td>{answer.created.substring(0,16).replaceAll("T", " ")}</td>
+                            <td>{answer.created.substring(0, 16).replaceAll("T", " ")}</td>
                             <td>
-                                <Link to={`/question/${id}/update/${answer.id}`}>
+                                <Link to={`/question/${questionId}/update/${answer.id}`}>
                                     <button type="button">Edit</button>
                                 </Link>
                                 <button type="button" onClick={() => handleDelete(answer.id)}>
