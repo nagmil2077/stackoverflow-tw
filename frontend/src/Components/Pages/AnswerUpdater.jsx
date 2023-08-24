@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState, } from "react";
+import {useNavigate, useParams, useLocation} from "react-router-dom";
 import Loading from "../Loading";
 import AnswerForm from "../AnswerForm";
 
@@ -24,6 +24,9 @@ const fetchAnswer = (id) => {
 const AnswerUpdater = () => {
     const {id} = useParams();
     const navigate = useNavigate();
+    const path = useLocation();
+    // NOT THE BEST SOLUTION, CANT TAKE BOTH ID'S FROM PARAMS, MAYBE OVERWRITTEN CAUSE OF SAME NAME?
+    const questionId = path.pathname.substring(10, 11);
 
     const [answer, setAnswer] = useState(null);
     const [updateLoading, setUpdateLoading] = useState(false);
@@ -44,7 +47,7 @@ const AnswerUpdater = () => {
         updateAnswer(answer)
             .then(() => {
                 setUpdateLoading(false);
-                navigate(`/question/${id}`);
+                navigate(`/question/${questionId}`);
             });
     };
 
@@ -57,7 +60,7 @@ const AnswerUpdater = () => {
             answer={answer}
             onSave={handleUpdateAnswer}
             disabled={updateLoading}
-            onCancel={() => navigate(`/question/${id}`)}
+            onCancel={() => navigate(`/question/${questionId}`)}
         />
     );
 };

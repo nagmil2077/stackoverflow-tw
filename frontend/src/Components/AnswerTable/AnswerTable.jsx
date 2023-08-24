@@ -20,6 +20,8 @@ const deleteAnswer = (id) => {
 
 const AnswerTable = () => {
     const {id} = useParams();
+    const params = useParams();
+    console.log(params)
 
     const [question, setQuestion] = useState(null);
     const [questionLoading, setQuestionLoading] = useState(true);
