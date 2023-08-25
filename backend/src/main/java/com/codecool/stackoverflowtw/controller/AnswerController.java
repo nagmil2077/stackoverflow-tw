@@ -2,7 +2,6 @@ package com.codecool.stackoverflowtw.controller;
 
 import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
 import com.codecool.stackoverflowtw.controller.dto.NewAnswerDTO;
-import com.codecool.stackoverflowtw.controller.dto.NewQuestionDTO;
 import com.codecool.stackoverflowtw.service.AnswerService;
 import org.springframework.web.bind.annotation.*;
 
