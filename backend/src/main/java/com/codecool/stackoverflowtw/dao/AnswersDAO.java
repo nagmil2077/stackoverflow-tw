@@ -5,7 +5,6 @@ import com.codecool.stackoverflowtw.dao.model.Answer;
 import java.util.List;
 
 public interface AnswersDAO {
-    void sayHi();
     // CREATE
     void add(int id, String description);
     // READ

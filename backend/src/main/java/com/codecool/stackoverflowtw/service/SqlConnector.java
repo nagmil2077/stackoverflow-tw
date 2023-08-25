@@ -29,6 +29,4 @@ public class SqlConnector {
             throw new RuntimeException(ex);
         }
     }
-
-
 }

@@ -17,11 +17,6 @@ public class AnswersDaoJdbc implements AnswersDAO {
     }
 
     @Override
-    public void sayHi() {
-        System.out.println("Hi DAO!");
-    }
-
-    @Override
     public void add(int id, String answer) {
         String sql = "INSERT INTO answer(answer, question_id, date_created) VALUES (?, ?, ?)";
 

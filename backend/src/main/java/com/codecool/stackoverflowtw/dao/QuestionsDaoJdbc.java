@@ -17,11 +17,6 @@ public class QuestionsDaoJdbc implements QuestionsDAO {
     }
 
     @Override
-    public void sayHi() {
-        System.out.println("Hi DAO!");
-    }
-
-    @Override
     public void add(int id, String title, String description) {
         String sql = "INSERT INTO question(title, description, date_created) VALUES (?, ?, ?)";
 
