@@ -4,9 +4,9 @@ import "./Layout.css";
 
 const Layout = () => {
     const location = useLocation();
-    const params = useParams();
+    const {questionId} = useParams();
 
-    if (location.pathname === `/question/${params.questionId}`) {
+    if (location.pathname === `/question/${questionId}`) {
         return <div className="Layout">
             <nav>
                 <ul>
@@ -14,7 +14,7 @@ const Layout = () => {
                         <Link to="/">Questions</Link>
                     </li>
                     <li>
-                        <Link to={`/question/${params.questionId}/create`}>
+                        <Link to={`/question/${questionId}/create`}>
                             <button type="button">Create Answer</button>
                         </Link>
                         <Link to="/create">
