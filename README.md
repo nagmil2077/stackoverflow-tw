@@ -67,7 +67,7 @@ You can clone the project and install it to see it in action.
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:nagmil2077/stackoverflow-tw.git
+   git clone https://github.com/nagmil2077/stackoverflow-tw.git
    ```
 2. Navigate to frontend folder and install NPM packages
    ```sh
