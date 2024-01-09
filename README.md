@@ -1,9 +1,3 @@
-<!-- PROJECT SHIELDS -->
-
-[![Contributors][contributors-shield]][contributors-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -14,7 +8,7 @@
 <h3 align="center">Stackoverflow Teamwork Project</h3>
 
   <p align="center">
-    Study project - Teamwork
+    This is a study project! - Teamwork
     <br />
     <a href="https://github.com/nagmil2077/stackoverflow-tw"><strong>Explore the docs »</strong></a>
     <br />
@@ -29,10 +23,15 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/nagmil2077/stackoverflow-tw)
 
-This study project involves creating a system with a primary focus on backend development using Java and SQL. The objective is
-to establish an SQL database to manage project data, implementing the Model-View-Controller (MVC) architecture. The
-emphasis is on basic data features initially, deferring user management functionalities. The codebase should adhere to
-SOLID, OOP, and Clean Code principles. Minimal frontend development is required, utilizing Vanilla JavaScript and HTML
+This project was created for educational purposes. 
+It contains two projects, one for the frontend and one for the backend. 
+It involves creating a CRUD (Create, Read, Update, Delete)
+system with a primary focus on backend development using Java and SQL. 
+The objective is to establish an SQL database to manage project data, 
+implementing the Model-View-Controller (MVC) architecture pattern.
+The emphasis is on basic data features initially, deferring user management functionalities.
+The codebase should adhere to SOLID, OOP, and Clean Code principles.
+Minimal frontend development is required, utilizing Vanilla JavaScript and HTML
 for straightforward data display, with no reliance on advanced frameworks.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -60,12 +59,8 @@ You can clone the project and install it to see it in action.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+ * [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+ * [Node.js 16+](https://nodejs.org/en)
 
 ### Installation
 
@@ -73,15 +68,19 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone git@github.com:nagmil2077/stackoverflow-tw.git
    ```
-2. Install NPM packages
+2. Navigate to frontend folder and install NPM packages
    ```sh
    npm install
    ```
-3. Run the backend
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Navigate to backend folder and build the backend project using [Maven](https://maven.apache.org/index.html), run the code from the backend folder
+   ```sh
+   mvn clean install
    ```
-4. Run the frontend from the frontend directory
+4. Navigate to backend folder and run the backend using [Maven](https://maven.apache.org/index.html)
+   ```sh
+   mvn spring-boot:run
+   ```
+5. Run the frontend from the frontend directory
    ```sh
    npm start
    ```
@@ -91,21 +90,21 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
+## Links
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos
-work well in this space. You may also link to more resources.
+This example uses the following open source libraries:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* [React](https://reactjs.org/)
+* [Spring Boot](https://spring.io/projects/spring-boot)
+* [PostgreSQL](https://www.postgresql.org)
 
 
 <!-- CONTACT -->
-
 ## Contact
 
-Mark Veszelka - [github](https://github.com/markveszelka) - mark.veszelka@gmail.com
+Ágnes Gurmai-Málnás - [github](https://github.com/BerryBusiness) - [linkedin](https://www.linkedin.com/in/agnes-gurmai-malnas/) - agnes.malnas@gmail.com\
+Milan Nagy - [github](https://github.com/nagmil2077) - [linkedin](https://www.linkedin.com/in/milan-nagy-a76b1416a/) - corey321@gmail.com\
+Mark Veszelka - [github](https://github.com/markveszelka) - [linkedin](https://www.linkedin.com/in/mark-veszelka/) - mark.veszelka@gmail.com
 
 Project Link: [https://github.com/nagmil2077/stackoverflow-tw](https://github.com/nagmil2077/stackoverflow-tw)
 
