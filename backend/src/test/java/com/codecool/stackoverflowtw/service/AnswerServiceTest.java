@@ -96,5 +96,12 @@ class AnswerServiceTest {
 
     @Test
     void testDeleteAnswerById() {
+        when(mockAnswersDao.delete(0)).thenReturn(true);
+
+        boolean expected = true;
+        boolean actual = answerService.deleteAnswerById(answer.id());
+
+        assertTrue(actual);
+        assertEquals(expected, actual);
     }
 }
