@@ -16,8 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AnswerServiceTest {
@@ -79,10 +78,20 @@ class AnswerServiceTest {
 
     @Test
     void testGetAnswerByAnswerId() {
+        when(mockAnswersDao.get(0)).thenReturn(answer);
+
+        AnswerDTO savedAnswer = answerService.getAnswerByAnswerId(answer.id());
+
+        assertNotNull(savedAnswer);
     }
 
     @Test
     void testUpdateAnswer() {
+        willDoNothing().given(mockAnswersDao).update(1, "modifiedDesc");
+
+        answerService.updateAnswer(1, "modifiedDesc");
+
+        verify(mockAnswersDao, times(1)).update(1, "modifiedDesc");
     }
 
     @Test
