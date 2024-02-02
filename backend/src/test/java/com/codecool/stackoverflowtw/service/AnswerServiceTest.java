@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,7 +56,7 @@ class AnswerServiceTest {
     }
 
     @Test
-    void testGetAnswersByQuestionId() {
+    void testGetAnswersByQuestionId_withAnswerList() {
         Answer answer1 = new Answer(
                 1,
                 0,
@@ -74,6 +75,16 @@ class AnswerServiceTest {
         List<AnswerDTO> answerList = answerService.getAnswersByQuestionId(0);
         assertNotNull(answerList);
         assertEquals(3, answerList.size());
+    }
+
+    @Test
+    void testGetAnswersByQuestionId_withEmptyAnswerList() {
+        when(mockAnswersDao.getAll(0)).thenReturn(Collections.emptyList());
+
+        List<AnswerDTO> answerList = answerService.getAnswersByQuestionId(0);
+
+        assertTrue(answerList.isEmpty());
+        assertEquals(0, answerList.size());
     }
 
     @Test
