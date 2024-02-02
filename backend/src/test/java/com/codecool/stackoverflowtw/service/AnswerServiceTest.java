@@ -1,0 +1,91 @@
+package com.codecool.stackoverflowtw.service;
+
+import com.codecool.stackoverflowtw.controller.dto.AnswerDTO;
+import com.codecool.stackoverflowtw.controller.dto.NewAnswerDTO;
+import com.codecool.stackoverflowtw.dao.AnswersDAO;
+import com.codecool.stackoverflowtw.dao.model.Answer;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class AnswerServiceTest {
+
+    @Mock
+    private AnswersDAO mockAnswersDao;
+
+    private AnswerService answerService;
+
+    private Answer answer;
+
+    @BeforeEach
+    void setUp() {
+        mockAnswersDao = mock(AnswersDAO.class);
+        answerService = new AnswerService(mockAnswersDao);
+
+        answer = new Answer(
+                0,
+                0,
+                "desc",
+                LocalDateTime.of(2014, Month.APRIL, 3, 10, 10, 30)
+        );
+    }
+
+    @Test
+    void testAddNewAnswer() {
+        willDoNothing().given(mockAnswersDao).add(0, "desc");
+
+        NewAnswerDTO newAnswerDTO = new NewAnswerDTO(
+                "desc"
+        );
+
+        int actual = answerService.addNewAnswer(0, newAnswerDTO);
+
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void testGetAnswersByQuestionId() {
+        Answer answer1 = new Answer(
+                1,
+                0,
+                "desc1",
+                LocalDateTime.of(2023, Month.AUGUST, 5, 15, 30, 25)
+        );
+        Answer answer2 = new Answer(
+                2,
+                0,
+                "desc2",
+                LocalDateTime.of(2024, Month.JANUARY, 1, 9, 45, 17)
+        );
+
+        when(mockAnswersDao.getAll(0)).thenReturn(List.of(answer, answer1, answer2));
+
+        List<AnswerDTO> answerList = answerService.getAnswersByQuestionId(0);
+        assertNotNull(answerList);
+        assertEquals(3, answerList.size());
+    }
+
+    @Test
+    void testGetAnswerByAnswerId() {
+    }
+
+    @Test
+    void testUpdateAnswer() {
+    }
+
+    @Test
+    void testDeleteAnswerById() {
+    }
+}

@@ -30,7 +30,7 @@ class QuestionServiceTest {
     private Question question;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         mockQuestionsDAO = mock(QuestionsDAO.class);
         questionService = new QuestionService(mockQuestionsDAO);
 
